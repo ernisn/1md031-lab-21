@@ -28,12 +28,24 @@
 
         <form id="formWrapper">
           <p>
-            <label for="First- and lastname">Fullname</label><br>
+            <label for="fullname">Fullname</label><br>
             <input id="fullname" v-model="fullname" required="required" placeholder=" First- and Last name" type="text">
           </p>
           <p>
             <label for="email">E-mail</label><br>
             <input id="email" v-model="email" required="required" placeholder=" E-mail address" type="email">
+          </p>
+          <p>
+            <label for="gender">Gender</label><br>
+            <input id="genderNo" v-model="gender" type="radio" value="no"/>
+            <label for="genderNo" checked="checked">Prefer not to say</label>
+            <br />
+            <input id="genderM" v-model="gender" type="radio" value="male"/>
+            <label for="genderM">Male</label>
+            <br />
+            <input id="genderF" v-model="gender" type="radio" value="female"/>
+            <label for="genderF">Female</label>
+            <br />
           </p>
           <p>
             <label for="Payment">Payment options</label><br>
@@ -43,22 +55,25 @@
               <option>Paypal</option>
             </select>
           </p>
-          <button type="submit"
-                  id="orderBtn"
-                  v-on:click="orderBtnListener">
-            Order
-          </button>
         </form>
-
+        <button type="submit"
+                id="orderBtn"
+                v-on:click="orderBtnListener">
+          Order
+        </button>
+        <br />
         <section id="mapWrapper">
           <div id="map" v-on:click="addOrder">
 
-            <div id="dots" v-if="location.x != 0 && location.y != 0">
-              <div v-on:addDot="addOrder"
-                   v-bind:style="{
+            <div id="dots"
+                 v-if="location.x != 0 && location.y != 0"
+                 v-on:addDot="addOrder"
+                 v-bind:style="{
                       left: location.x,
                       top: location.y
-                      }">
+                      }"
+            >
+              <div>
                 T
               </div>
             </div>
@@ -108,6 +123,7 @@ export default {
       burgers : JSON.parse(JSON.stringify(menu)),
       fullname:'',
       email:'',
+      gender:'',
       payment:'',
       orderedBurgers:{},
       location: { x: 0,
@@ -122,13 +138,13 @@ export default {
     addOrder: function (event) {
       var offset = {x: event.currentTarget.getBoundingClientRect().left,
                     y: event.currentTarget.getBoundingClientRect().top};
+      location.x = event.clientX - 10 - offset.x;
+      location.y = event.clientY - 10 - offset.y;
       socket.emit("addOrder", { orderId: this.getOrderNumber(),
                                 details: { x: event.clientX - 10 - offset.x,
                                            y: event.clientY - 10 - offset.y },
-                                location: { x: event.clientX - 10 - offset.x,
-                                            y: event.clientY - 10 - offset.y },
                                 orderItems: ["Beans", "Curry"]
-                              }
+                              },
                  );
     },
     addToOrder: function (event) {
@@ -138,6 +154,7 @@ export default {
       console.log([
         this.fullname,
         this.email,
+        this.gender,
         this.payment,
         this.orderedBurgers
       ])
@@ -191,31 +208,9 @@ export default {
     padding-left: 30px;
   }
 
-  #page > menu:hover {
-    background-color: #fffffe;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12), 0 10px 20px rgba(0, 0, 0, 0.24);
-    grid-area: menu;
-    border-top-left-radius: 20px;
-    border-bottom-left-radius: 20px;
-    padding: 20px;
-    padding-left: 30px;
-  }
-
   #page > main {
     background-color: #fffffe;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06), 0 10px 20px rgba(0, 0, 0, 0.12);
-    grid-area: main;
-    border-top-right-radius: 20px;
-    border-bottom-right-radius: 20px;
-    padding: 20px;
-    padding-right: 30px;
-    margin-top: 16px;
-    margin-bottom: 16px;
-  }
-
-  #page > main:hover {
-    background-color: #fffffe;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12), 0 10px 20px rgba(0, 0, 0, 0.24);
     grid-area: main;
     border-top-right-radius: 20px;
     border-bottom-right-radius: 20px;
@@ -251,20 +246,38 @@ export default {
 
   #formWrapper {
     display: grid;
-    grid-template-rows: 1fr 1fr;
+    grid-template-rows: auto auto;
     grid-template-columns: 1fr 1fr;
   }
 
   #orderBtn {
-    width: 100px;
-    height: 30px;
-    margin: auto;
+    background: white;
+    border: none;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    width: 50%;
+    height: 40px;
+    display: table;
+    margin: 0 auto;
+    border-radius: 15px;
+  }
+
+  #orderBtn:hover {
+    background: ghostwhite;
+    border: none;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+    width: 50%;
+    height: 40px;
+    display: table;
+    margin: 0 auto;
+    border-radius: 15px;
   }
 
   #mapWrapper {
     width: 40vw;
-    height: 70vh;
+    height: 60vh;
     overflow: scroll;
+    scrollbar-width: none;
+    border-radius: 20px;
   }
 
   #map {
