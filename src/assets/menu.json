@@ -1,0 +1,26 @@
+[
+  {
+    "name":"Super Bad Burger",
+    "kCal":1000,
+    "url":"../../public/img/super.png",
+    "ingredients":"Grass-Fed Beef, Organic Cheddar Cheese, Eggs, Grilled Onion, Shredded Lettuce, Tomato, Pickles",
+    "lactose":true,
+    "gluten":true
+  },
+  {
+    "name":"Chicken Bad Burger",
+    "kCal":800,
+    "url":"../../public/img/chicken.png",
+    "ingredients":"Fresh Chicken Breast, Organic Cheddar Cheese, Fresh or Grilled Onion, Shredded Lettuce, Tomato, Pickles",
+    "lactose":true,
+    "gluten":false
+  },
+  {
+    "name":"Vegan Bad Burger",
+    "kCal":600,
+    "url":"../../public/img/vegan.png",
+    "ingredients":"Vegan Cheddar, Fresh or Grilled Onion, Shredded Lettuce, Tomato, Pickles",
+    "lactose":false,
+    "gluten":false
+  }
+]
