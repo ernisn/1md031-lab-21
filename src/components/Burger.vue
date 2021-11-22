@@ -21,13 +21,13 @@
         alt="Vegan Bad Burger img"
         width=140
       >
-      <button id="amoutBtn"
+      <button class="amoutBtn"
               type="submit"
               v-on:click="amountBtnListener(1)">
         +1
       </button>
       Amout: {{ amountOrdered }}
-      <button id="amoutBtn"
+      <button class="amoutBtn"
               type="submit"
               v-if="amountOrdered > 0"
               v-on:click="amountBtnListener(-1)">
@@ -101,7 +101,7 @@ export default {
     align-items: center;
   }
 
-  #amoutBtn {
+  .amoutBtn {
     background: white;
     border: none;
     width: 25px;
@@ -109,7 +109,7 @@ export default {
     border-radius: 5px;
   }
 
-  #amoutBtn:hover {
+  .amoutBtn:hover {
     background: ghostwhite;
     border: none;
     width: 25px;
