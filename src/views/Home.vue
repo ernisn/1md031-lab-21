@@ -36,14 +36,6 @@
             <input id="email" v-model="email" required="required" placeholder=" E-mail address" type="email">
           </p>
           <p>
-            <label for="Street">Street</label><br>
-            <input id="street" v-model="street" placeholder=" Street name" type="text">
-          </p>
-          <p>
-            <label for="House">House</label><br>
-            <input id="house" v-model="house" placeholder=" House number" type="text">
-          </p>
-          <p>
             <label for="Payment">Payment options</label><br>
             <select id="Payment" v-model="payment" autocomplete="off">
               <option select="selected">Swish</option>
@@ -60,7 +52,16 @@
 
         <section id="mapWrapper">
           <div id="map" v-on:click="addOrder">
-            click here
+
+            <div id="dots" v-if="location.x != 0 && location.y != 0">
+              <div v-on:addDot="addOrder"
+                   v-bind:style="{
+                      left: location.x,
+                      top: location.y
+                      }">
+                T
+              </div>
+            </div>
           </div>
         </section>
 
@@ -107,10 +108,11 @@ export default {
       burgers : JSON.parse(JSON.stringify(menu)),
       fullname:'',
       email:'',
-      street:'',
-      house:'',
       payment:'',
-      orderedBurgers:{}
+      orderedBurgers:{},
+      location: { x: 0,
+                  y: 0
+      }
     }
   },
   methods: {
@@ -123,6 +125,8 @@ export default {
       socket.emit("addOrder", { orderId: this.getOrderNumber(),
                                 details: { x: event.clientX - 10 - offset.x,
                                            y: event.clientY - 10 - offset.y },
+                                location: { x: event.clientX - 10 - offset.x,
+                                            y: event.clientY - 10 - offset.y },
                                 orderItems: ["Beans", "Curry"]
                               }
                  );
@@ -134,8 +138,6 @@ export default {
       console.log([
         this.fullname,
         this.email,
-        this.street,
-        this.house,
         this.payment,
         this.orderedBurgers
       ])
@@ -261,12 +263,23 @@ export default {
 
   #mapWrapper {
     width: 40vw;
-    height: 60vh;
+    height: 70vh;
     overflow: scroll;
   }
+
   #map {
     width: 1920px;
     height: 1078px;
     background: url("/img/polacks.jpg");
+  }
+
+  #map div {
+    position: absolute;
+    background: black;
+    color: white;
+    border-radius: 10px;
+    width:20px;
+    height:20px;
+    text-align: center;
   }
 </style>
