@@ -26,7 +26,7 @@
         <h2>Customer Information</h2>
         This is where you provide necessary information.
 
-        <form>
+        <form id="formWrapper">
           <p>
             <label for="First- and lastname">Fullname</label><br>
             <input id="fullname" v-model="fullname" required="required" placeholder=" First- and Last name" type="text">
@@ -51,15 +51,19 @@
               <option>Paypal</option>
             </select>
           </p>
+          <button type="submit"
+                  id="orderBtn"
+                  v-on:click="orderBtnListener">
+            Order
+          </button>
         </form>
-        <button type="submit"
-                v-on:click="orderBtnListener">
-          Order
-        </button>
 
-        <div id="map" v-on:click="addOrder">
-          click here
-        </div>
+        <section id="mapWrapper">
+          <div id="map" v-on:click="addOrder">
+            click here
+          </div>
+        </section>
+
 
       </main>
 
@@ -241,11 +245,28 @@ export default {
     margin: 5px;
   }
 
-  /*Map config*/
+  /*Contact config*/
 
+  #formWrapper {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  #orderBtn {
+    width: 100px;
+    height: 30px;
+    margin: auto;
+  }
+
+  #mapWrapper {
+    width: 40vw;
+    height: 60vh;
+    overflow: scroll;
+  }
   #map {
-    width: 300px;
-    height: 300px;
-    background-color: red;
+    width: 1920px;
+    height: 1078px;
+    background: url("/img/polacks.jpg");
   }
 </style>

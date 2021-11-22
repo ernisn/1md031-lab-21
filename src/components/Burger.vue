@@ -7,19 +7,19 @@
         v-if="burger.name === 'Super Bad Burger'"
         src='../../public/img/super.png'
         alt="Super Bad Burger img"
-        width=130
+        width=140
       >
       <img
         v-else-if="burger.name === 'Chicken Bad Burger'"
         src='../../public/img/chicken.png'
         alt="Chicken Bad Burger img"
-        width=130
+        width=140
       >
       <img
         v-else
         src='../../public/img/vegan.png'
         alt="Vegan Bad Burger img"
-        width=130
+        width=140
       >
       <button type="submit"
               v-on:click="amountBtnListener(1)">
