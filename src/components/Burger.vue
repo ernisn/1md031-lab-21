@@ -21,6 +21,16 @@
         alt="Vegan Bad Burger img"
         width=130
       >
+      <button type="submit"
+              v-on:click="amountBtnListener(1)">
+        +1
+      </button>
+      Amout: {{ amountOrdered }}
+      <button type="submit"
+              v-if="amountOrdered > 0"
+              v-on:click="amountBtnListener(-1)">
+        -1
+      </button>
     </div>
 
     <div>
@@ -30,16 +40,6 @@
         <li>Ingredients: {{ burger.ingredients }}</li>
         <li>Lactose: {{ burger.lactose }}</li>
         <li>Gluten: {{ burger.gluten }}</li>
-        <button type="submit"
-          v-on:click="amountOrdered+=1">
-          +1
-        </button>
-        Order amout: {{ amountOrdered }}
-        <button type="submit"
-                v-if="amountOrdered > 0"
-                v-on:click="amountOrdered-=1">
-          -1
-        </button>
       </ul>
       <br>
     </div>
@@ -58,6 +58,31 @@ export default {
   data: function () {
     return {
       amountOrdered: 0,
+    }
+  },
+  methods: {
+    addBurger: function () {
+      this.amountOrdered += 1;
+      this.$emit('orderedBurger', {
+            name: this.burger.name,
+            amount: this.amountOrdered
+          }
+      );
+    },
+    delBurger: function () {
+      this.amountOrdered -= 1;
+      this.$emit('orderedBurger', {
+            name: this.burger.name,
+            amount: this.amountOrdered
+          }
+      );
+    },
+    amountBtnListener: function (change) {
+      if (change == 1) {
+        this.addBurger();
+      } else {
+        this.delBurger();
+      }
     }
   }
 }

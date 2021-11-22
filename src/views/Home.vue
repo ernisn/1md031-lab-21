@@ -16,7 +16,8 @@
           <div>
             <Burger v-for="burger in burgers"
                     v-bind:burger="burger"
-                    v-bind:key="burger.name"/>
+                    v-bind:key="burger.name"
+                    v-on:orderedBurger="addToOrder($event)"/>
           </div>
         </div>
       </menu>
@@ -52,13 +53,7 @@
           </p>
         </form>
         <button type="submit"
-                v-on:click="printLog([
-                    this.fullname,
-                    this.email,
-                    this.street,
-                    this.house,
-                    this.payment
-                ])">
+                v-on:click="orderBtnListener">
           Order
         </button>
 
@@ -110,7 +105,8 @@ export default {
       email:'',
       street:'',
       house:'',
-      payment:''
+      payment:'',
+      orderedBurgers:{}
     }
   },
   methods: {
@@ -127,8 +123,18 @@ export default {
                               }
                  );
     },
-    printLog: function(output) {
-      console.log(output)
+    addToOrder: function (event) {
+      this.orderedBurgers[event.name] = event.amount;
+    },
+    orderBtnListener: function() {
+      console.log([
+        this.fullname,
+        this.email,
+        this.street,
+        this.house,
+        this.payment,
+        this.orderedBurgers
+      ])
     }
   }
 }
