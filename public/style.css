@@ -1,1 +1,74 @@
-/*empty*/
+/*Page config*/
+
+#page {
+    display: grid;
+    width: 90%;
+    height: 100%;
+    margin: auto;
+    grid-template: "header header"
+                 "menu  customer"
+                 "footer  footer";
+    grid-template-rows: auto 1fr auto;
+    grid-template-columns: 5fr 6fr;
+    grid-row-gap: 5px;
+    grid-column-gap: 5px;
+
+}
+
+#page > header {
+    background-color: skyblue;
+    grid-area: header;
+    border-radius: 20px;
+    text-align: center;
+}
+
+#page > menu {
+    background-color: lightblue;
+    grid-area: menu;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    padding: 20px;
+    padding-left: 30px;
+}
+
+#page > customer {
+    background-color: lightblue;
+    grid-area: customer;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    padding: 20px;
+    padding-right: 30px;
+    margin-top: 16px;
+    margin-bottom: 16px;
+}
+
+#page > footer {
+    background-color: lightgrey;
+    grid-area: footer;
+    text-align: center;
+}
+
+h1 {
+    text-align: center;
+    margin: 20px;
+}
+
+h2 {
+    text-align: center;
+    margin: 10px;
+}
+
+h4 {
+    text-align: center;
+    margin: 5px;
+}
+
+/*Menu config*/
+
+.menugrid {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-row-gap: 20px;
+    align-items: center;
+}

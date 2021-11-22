@@ -1,1 +1,102 @@
-Hello world
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Bad Burger</title>
+    <link rel="stylesheet" type="text/css" href="../public/style.css">
+</head>
+
+<section id="page">
+
+<header>
+    <h1>Welcome to Bad Burger</h1>
+</header>
+
+<menu>
+    <h2>Select Burger</h2>
+    This is where you execute burger selection.<br><br>
+
+    <div class="menugrid">
+
+        <div>
+            <img src="/public/img/super.png" alt="Span" height="120" title="Super Bad Burger">
+        </div>
+        <div>
+            <ul>
+                <h4>Super Bad Burger</h4>
+                <li>Your Best Choice!</li>
+                <li>Grass-Fed Beef</li>
+                <li>Organic Cheddar Cheese, Eggs</li>
+                <li>Grilled Onion, Shredded Lettuce, Tomato</li>
+            </ul>
+        </div>
+
+        <div>
+            <img src="/public/img/chicken.png" alt="Span" height="120" title="Chicken Bad Burger">
+        </div>
+        <div>
+           <ul>
+               <h4>Chicken Bad Burger</h4>
+               <li>Fresh Chicken Breast!</li>
+               <li>Organic Cheddar</li>
+               <li>Fresh or Grilled Onion</li>
+               <li>Shredded Lettuce, Tomato, Pickles</li>
+           </ul>
+        </div>
+
+        <div>
+            <img src="/public/img/vegan.png" alt="Span" height="120" title="Vegan Bad Burger">
+        </div>
+        <div>
+            <ul>
+                <h4>Vegan Bad Burger</h4>
+                <li>Best for Vegetarian!</li>
+                <li>Organic Cheddar</li>
+                <li>Fresh or Grilled Onion</li>
+                <li>Shredded Lettuce, Tomato, Pickles</li>
+            </ul>
+        </div>
+
+    </div>
+</menu>
+
+<customer>
+    <h2>Customer Information</h2>
+    This is where you provide necessary information.
+
+    <form>
+        <p>
+            <label for="First- and lastname">Fullname</label><br>
+            <input id="First- and lastname" name="fn" required="required" placeholder=" First- and Last name" type="text">
+        </p>
+        <p>
+            <label for="email">E-mail</label><br>
+            <input id="email" name="em" required="required" placeholder=" E-mail address" type="email">
+        </p>
+        <p>
+            <label for="Street">Street</label><br>
+            <input id="Street" name="ln" placeholder=" Street name" type="text">
+        </p>
+        <p>
+            <label for="House">House</label><br>
+            <input id="House" name="ln" placeholder=" House number" type="text">
+        </p>
+        <p>
+            <label for="Payment">Payment options</label><br>
+            <select id="Payment" name="pay" autocomplete="off">
+                <option select="selected">Swish</option>
+                <option>Credit Card</option>
+                <option>Paypal</option>
+            </select>
+        </p>
+    </form>
+</customer>
+
+<footer>
+    <small>&copy; 2020 Bad Burger Inc.</small>
+</footer>
+
+</section>
+
+
