@@ -67,7 +67,7 @@
 
         <br />
         <section id="mapWrapper">
-          <div id="map" v-on:click="addOrder">
+          <div id="map" v-on:click="setLocation">
             <div id="mapDot"
                  v-if="location.x != 0 && location.y != 0"
                  v-bind:style="{
@@ -102,7 +102,7 @@ import menu from '../assets/menu.json'
 const socket = io();
 
 /*
-function menuItem(name, kCal, url, ingredients, lactose, gluten) {
+function menuItem(name, kCal, ingredients, lactose, gluten) {
   this.name = name;
   this.kCal = kCal;
   this.ingredients = ingredients;
@@ -134,15 +134,22 @@ export default {
     getOrderNumber: function () {
       return Math.floor(Math.random()*100000);
     },
-    addOrder: function (event) {
-      var offset = {x: event.currentTarget.getBoundingClientRect().left,
-                    y: event.currentTarget.getBoundingClientRect().top};
-      this.location.x = event.clientX - 10;
-      this.location.y = event.clientY - 10;
+    addOrder: function () {
+      let mapBlock = document.getElementById('mapWrapper');
+      let offset = {
+        x: mapBlock.offsetLeft,
+        y: mapBlock.offsetTop
+      };
       socket.emit("addOrder", { orderId: this.getOrderNumber(),
-                                details: { x: event.clientX - 10 - offset.x,
-                                           y: event.clientY - 10 - offset.y },
-                                orderItems: ['content1', 'content2']
+                                details: {
+                                  x: this.location.x - offset.x,
+                                  y: this.location.y - offset.y,
+                                  name: this.fullname,
+                                  email: this.email,
+                                  gender: this.gender,
+                                  payment: this.payment,
+                                  orderedBurgers: this.orderedBurgers
+                                }
                               },
                  );
     },
@@ -150,13 +157,19 @@ export default {
       this.orderedBurgers[event.name] = event.amount;
     },
     orderBtnListener: function() {
+      this.addOrder();
       console.log([
         this.fullname,
         this.email,
         this.gender,
         this.payment,
-        this.orderedBurgers
+        this.orderedBurgers,
+        this.location
       ])
+    },
+    setLocation: function(event) {
+      this.location.x = event.clientX - 10;
+      this.location.y = event.clientY - 10;
     }
   }
 }
@@ -300,5 +313,6 @@ export default {
     width:20px;
     height:20px;
     text-align: center;
+    overflow:auto;
   }
 </style>
