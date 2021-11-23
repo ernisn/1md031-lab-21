@@ -233,12 +233,17 @@ export default {
 
   h2 {
     text-align: center;
+    padding-bottom: 10px;
     margin: 10px;
   }
 
   h4 {
     text-align: center;
     margin: 5px;
+  }
+
+  li {
+    font-size: small;
   }
 
   /*Contact config*/
@@ -256,7 +261,7 @@ export default {
   #orderBtn {
     background: white;
     border: none;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
     width: 50%;
     height: 40px;
     display: table;
@@ -266,20 +271,14 @@ export default {
 
   #orderBtn:hover {
     background: ghostwhite;
-    border: none;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
-    width: 50%;
-    height: 40px;
-    display: table;
-    margin: 0 auto;
-    border-radius: 15px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12);
   }
 
   /*Map config*/
 
   #mapWrapper {
     width: 40vw;
-    height: 60vh;
+    height: 40vh;
     overflow: scroll;
     scrollbar-width: none;
     border-radius: 20px;

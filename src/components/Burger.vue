@@ -1,41 +1,26 @@
 <template>
+<div id="menuGrid">
 
-  <div class="menugrid">
+  <div id="oneBurger"
+       v-on:click="amountBtnListener(1)">
 
     <div>
-      <img class="burgerPic"
-        v-if="burger.name === 'Super Bad Burger'"
-        v-on:click="amountBtnListener(1)"
+      <img v-if="burger.name === 'Super Bad Burger'"
         src='../../public/img/super.png'
         alt="Super Bad Burger img"
         width=140
       >
-      <img class="burgerPic"
-        v-else-if="burger.name === 'Chicken Bad Burger'"
-        v-on:click="amountBtnListener(1)"
+      <img  v-else-if="burger.name === 'Chicken Bad Burger'"
         src='../../public/img/chicken.png'
         alt="Chicken Bad Burger img"
         width=140
       >
-      <img class="burgerPic"
-        v-else
+      <img v-else
         v-on:click="amountBtnListener(1)"
         src='../../public/img/vegan.png'
         alt="Vegan Bad Burger img"
         width=140
       >
-      <button class="amoutBtn"
-              type="submit"
-              v-on:click="amountBtnListener(1)">
-        +1
-      </button>
-      Amout: {{ amountOrdered }}
-      <button class="amoutBtn"
-              type="submit"
-              v-if="amountOrdered > 0"
-              v-on:click="amountBtnListener(-1)">
-        -1
-      </button>
     </div>
 
     <div>
@@ -43,14 +28,36 @@
         <h4>{{ burger.name }}</h4>
         <li>Only {{ burger.kCal }} kCal</li>
         <li>Ingredients: {{ burger.ingredients }}</li>
-        <li>Lactose: {{ burger.lactose }}</li>
-        <li>Gluten: {{ burger.gluten }}</li>
+        <li v-if=!burger.lactose>
+          ⭐ ️No Lactose!
+        </li>
+        <li v-if=!burger.gluten>
+          ⭐ Gluten Free!
+        </li>
       </ul>
-      <br>
     </div>
 
   </div>
 
+<!--  <div> </div>-->
+
+  <div id="amountGp">
+    <button class="amoutBtn"
+            type="submit"
+            v-on:click="amountBtnListener(1)">
+      +
+    </button>
+    <p v-if="amountOrdered == 0">Add</p>
+    <p v-if="amountOrdered != 0">{{ amountOrdered }}</p>
+    <button class="amoutBtn"
+            type="submit"
+            v-if="amountOrdered > 0"
+            v-on:click="amountBtnListener(-1)">
+      -
+    </button>
+  </div>
+
+</div>
 </template>
 
 <script>
@@ -98,30 +105,51 @@ export default {
 
   /*Menu config*/
 
-  .menugrid {
+  #menuGrid {
+    display: grid;
+    grid-template-columns: 10fr 1fr;
+    user-select: none;
+  }
+
+  #oneBurger {
     display: grid;
     grid-template-columns: 1fr 3fr;
     align-items: center;
+    background-color: #fffffe;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.12);
+    border-radius: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 10px;
   }
 
-  .burgerPic:hover {
-    transform: scale(1.1);
+  #oneBurger:hover {
+    transform: scale(1.02);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
+  }
+
+  #amountGp {
+    display: grid;
+    grid-template-rows: auto auto auto;
+    height: 100px;
+    width: 30px;
+    margin: auto;
+    padding-left: 20px;
+    text-align: center;
   }
 
   .amoutBtn {
     background: white;
     border: none;
-    width: 25px;
+    height:30px;
+    width: 30px;
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
-    border-radius: 5px;
+    border-radius: 15px;
   }
 
   .amoutBtn:hover {
     background: ghostwhite;
-    border: none;
-    width: 25px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-    border-radius: 5px;
   }
 
 </style>

@@ -50,7 +50,7 @@ Your Home.vue file:
 
 Your Burger.vue component:
 - [x] ... allows adding and removing burgers from the order
-- [ ] ... only displays allergy information if relevant (either only if it contains gluten or lactose, or only if it's gluten or lactose free)
+- [x] ... only displays allergy information if relevant (either only if it contains gluten or lactose, or only if it's gluten or lactose free)
 
 Your Dispatcher.vue file:
 - [ ] ... shows for every order :

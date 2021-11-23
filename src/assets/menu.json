@@ -12,8 +12,8 @@
     "kCal":800,
     "url":"../../public/img/chicken.png",
     "ingredients":"Fresh Chicken Breast, Organic Cheddar Cheese, Fresh or Grilled Onion, Shredded Lettuce, Tomato, Pickles",
-    "lactose":true,
-    "gluten":false
+    "lactose":false,
+    "gluten":true
   },
   {
     "name":"Vegan Bad Burger",
