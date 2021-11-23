@@ -3,20 +3,23 @@
   <div class="menugrid">
 
     <div>
-      <img
+      <img class="burgerPic"
         v-if="burger.name === 'Super Bad Burger'"
+        v-on:click="amountBtnListener(1)"
         src='../../public/img/super.png'
         alt="Super Bad Burger img"
         width=140
       >
-      <img
+      <img class="burgerPic"
         v-else-if="burger.name === 'Chicken Bad Burger'"
+        v-on:click="amountBtnListener(1)"
         src='../../public/img/chicken.png'
         alt="Chicken Bad Burger img"
         width=140
       >
-      <img
+      <img class="burgerPic"
         v-else
+        v-on:click="amountBtnListener(1)"
         src='../../public/img/vegan.png'
         alt="Vegan Bad Burger img"
         width=140
@@ -99,6 +102,10 @@ export default {
     display: grid;
     grid-template-columns: 1fr 3fr;
     align-items: center;
+  }
+
+  .burgerPic:hover {
+    transform: scale(1.1);
   }
 
   .amoutBtn {
