@@ -64,19 +64,13 @@
         <br />
         <section id="mapWrapper">
           <div id="map" v-on:click="addOrder">
-
-            <div id="dots"
-                 v-if="location.x != 0 && location.y != 0"
-                 v-on:addDot="addOrder"
-                 v-bind:style="{
-                      left: location.x,
-                      top: location.y
-                      }"
-            >
-              <div>
-                T
-              </div>
+            <div v-bind:style="{
+                left: location.x + 'px',
+                top: location.y + 'px',
+                }">
+              T
             </div>
+
           </div>
         </section>
 
@@ -143,7 +137,7 @@ export default {
       socket.emit("addOrder", { orderId: this.getOrderNumber(),
                                 details: { x: event.clientX - 10 - offset.x,
                                            y: event.clientY - 10 - offset.y },
-                                orderItems: ["Beans", "Curry"]
+                                orderItems: ['Burger name', 'Burger amount']
                               },
                  );
     },
@@ -278,12 +272,14 @@ export default {
     overflow: scroll;
     scrollbar-width: none;
     border-radius: 20px;
+    box-shadow: inset 0 0 30px 10px rgba(0, 0, 0, 0.2);
   }
 
   #map {
     width: 1920px;
     height: 1078px;
     background: url("/img/polacks.jpg");
+    cursor: crosshair;
   }
 
   #map div {
