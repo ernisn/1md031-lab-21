@@ -35,7 +35,7 @@ The style.css file contains:
 - [x] Change the cursor when hovering over the order button
 - [x] Adds margins to the sections and the order button
 - [x] Add a border to the two sections
-- [ ] Create a header that places an image behind the headline
+- [x] Create a header that places an image behind the headline
 - [x] Use a grid layout for the burger selection section
 
 ## 04 JavaScript and Vue
@@ -53,10 +53,10 @@ Your Burger.vue component:
 - [x] ... only displays allergy information if relevant (either only if it contains gluten or lactose, or only if it's gluten or lactose free)
 
 Your Dispatcher.vue file:
-- [ ] ... shows for every order :
+- [x] ... shows for every order :
   - [x] a location on the map
-  - [ ] the order information
-  - [ ] the customer information
+  - [x] the order information
+  - [x] the customer information
 
 ## Optional
 - [x] Only allow the order to be sent if all necessary information are provided
@@ -64,4 +64,4 @@ Your Dispatcher.vue file:
 - [ ] Allow the dispatcher to handle orders by providing buttons next to every order that can switch the order status to "in preparation" and "done"
 - [ ] Display the order status to the customer and update it in the customer view if updated by the dispatcher
 - [ ] Show the order status for the customer as well.
-- [ ] Find a better visualization for what orders belong to which location on the map
+- [x] Find a better visualization for what orders belong to which location on the map
