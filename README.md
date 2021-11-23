@@ -1,8 +1,14 @@
 # Bad Burger
 
-Screenshot:
+### Screenshot
 
-![README_Scr](README_Scr.png)
+Order screen:
+
+![home](home.png)
+
+Dispatcher:
+
+![dispatcher](dispatcher.png)
 
 ### Run npm server
 ```
