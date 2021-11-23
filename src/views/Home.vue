@@ -55,22 +55,27 @@
               <option>Paypal</option>
             </select>
           </p>
+          <div id="mapText">
+            Indicate point of delivery on the map below:
+          </div>
+          <button type="submit"
+                  id="orderBtn"
+                  v-on:click="orderBtnListener">
+            Order Now
+          </button>
         </form>
-        <button type="submit"
-                id="orderBtn"
-                v-on:click="orderBtnListener">
-          Order
-        </button>
+
         <br />
         <section id="mapWrapper">
           <div id="map" v-on:click="addOrder">
-            <div v-bind:style="{
-                left: location.x + 'px',
-                top: location.y + 'px',
+            <div id="mapDot"
+                 v-if="location.x != 0 && location.y != 0"
+                 v-bind:style="{
+                      left: location.x + 'px',
+                      top: location.y + 'px',
                 }">
               T
             </div>
-
           </div>
         </section>
 
@@ -132,12 +137,12 @@ export default {
     addOrder: function (event) {
       var offset = {x: event.currentTarget.getBoundingClientRect().left,
                     y: event.currentTarget.getBoundingClientRect().top};
-      location.x = event.clientX - 10 - offset.x;
-      location.y = event.clientY - 10 - offset.y;
+      this.location.x = event.clientX - 10;
+      this.location.y = event.clientY - 10;
       socket.emit("addOrder", { orderId: this.getOrderNumber(),
                                 details: { x: event.clientX - 10 - offset.x,
                                            y: event.clientY - 10 - offset.y },
-                                orderItems: ['Burger name', 'Burger amount']
+                                orderItems: ['content1', 'content2']
                               },
                  );
     },
@@ -240,8 +245,12 @@ export default {
 
   #formWrapper {
     display: grid;
-    grid-template-rows: auto auto;
+    grid-template-rows: auto auto auto;
     grid-template-columns: 1fr 1fr;
+  }
+
+  #mapText {
+    margin: auto;
   }
 
   #orderBtn {
@@ -266,6 +275,8 @@ export default {
     border-radius: 15px;
   }
 
+  /*Map config*/
+
   #mapWrapper {
     width: 40vw;
     height: 60vh;
@@ -282,7 +293,7 @@ export default {
     cursor: crosshair;
   }
 
-  #map div {
+  #mapDot {
     position: absolute;
     background: black;
     color: white;
